@@ -9,10 +9,10 @@ import os
 
 
 class FileStorage:
-    """ 
+    """
     Storage Class.
     """
-    
+
     __file_path = "storage_file.json"
     __objects = {}
 
@@ -22,7 +22,7 @@ class FileStorage:
 
     def new(self, obj):
         """ Store passed objects in dict """
-        key = str(obj.__class__.__name__ + obj.id)
+        key = str(obj.__class__.__name__ + "." + obj.id)
         new_obj = {key: obj}
         self.__objects.update(new_obj)
 
@@ -45,7 +45,7 @@ class FileStorage:
     def load_class(self, name):
         """ Creates class Refrence """
         from models.base_model import BaseModel
-        
+
         classes = {"BaseModel": BaseModel}
-        
+
         return classes[name]
