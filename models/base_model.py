@@ -6,6 +6,7 @@
 
 from uuid import uuid4
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -13,16 +14,18 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initiation."""
-        if kwargs != {}:
-            del kwargs['__class__']
+        if kwargs is not None and kwargs != {}:
             for key, val in kwargs.items():
-                self.__dict__[key] = val
-            self.__dict__['created_at'] = datetime.fromisoformat(self.__dict__['created_at'])
-            self.__dict__['updated_at'] = datetime.fromisoformat(self.__dict__['updated_at'])
+                if key != '__class__':
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.fromisoformat(val))
+                    else:
+                        setattr(self, key, val)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
 
     def __str__(self):
         """Simple-Info"""
@@ -31,11 +34,12 @@ class BaseModel:
     def save(self):
         """Save-Time"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """ Model-dict """
-        self.created_at = self.created_at.isoformat()
-        self.updated_at = self.updated_at.isoformat()
-        modict = {k: v for k, v in self.__dict__.items() if v is not None}
-        modict["__class__"] = self.__class__.__name__
-        return modict
+        custom_dict = self.__dict__.copy()
+        custom_dict['__class__'] = self.__class__.__name__
+        custom_dict['created_at'] = custom_dict['created_at'].isoformat()
+        custom_dict['updated_at'] = custom_dict['updated_at'].isoformat()
+        return custom_dict
