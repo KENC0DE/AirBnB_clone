@@ -6,6 +6,7 @@
 
 import json
 import os
+import datetime
 
 
 class FileStorage:
@@ -47,7 +48,38 @@ class FileStorage:
         from models.base_model import BaseModel
 
         classes = {"BaseModel": BaseModel}
+        if name is None:
+            return classes
+
         if name not in classes:
             return None
 
         return classes[name]
+
+    def attrib(self, name):
+        """Returns the valid attributes"""
+        attributes = {
+            "id": str,
+            "created_at": datetime.datetime,
+            "updated_at": datetime.datetime,
+            "email": str,
+            "password": str,
+            "first_name": str,
+            "last_name": str,
+            "name": str,
+            "state_id": str,
+            "city_id": str,
+            "user_id": str,
+            "description": str,
+            "number_rooms": int,
+            "number_bathrooms": int,
+            "max_guest": int,
+            "price_by_night": int,
+            "latitude": float,
+            "longitude": float,
+            "amenity_ids": list,
+            "place_id": str,
+            "user_id": str,
+            "text": str
+        }
+        return attributes[name]
