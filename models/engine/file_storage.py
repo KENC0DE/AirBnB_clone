@@ -47,5 +47,7 @@ class FileStorage:
         from models.base_model import BaseModel
 
         classes = {"BaseModel": BaseModel}
+        if name not in classes:
+            return None
 
         return classes[name]
