@@ -1,1 +1,1 @@
-AirBnB-Clone by Ken Niguise and Marshal Zvinoira 
+AirBnB-Clone

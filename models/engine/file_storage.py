@@ -47,10 +47,20 @@ class FileStorage:
         """ Creates class Refrence """
         from models.base_model import BaseModel
         from models.user import User
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.state import State
+        from models.review import Review
 
         classes = {
             "BaseModel": BaseModel,
-            "User": User
+            "User": User,
+            "Amenity": Amenity,
+            "City": City,
+            "Place": Place,
+            "State": State,
+            "Review": Review
         }
         if name is None:
             return classes
