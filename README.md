@@ -1,1 +1,3 @@
-AirBnB-Clone by Ken Niguise and Marshal Zvinoira marshal.wjnr@gmail.com
+AirBnB-Clone by Kenansa Niguise kenansameret@gmail.com  and Marshiial Zvinoira marshal.wjnr@gmail.com
+
+
