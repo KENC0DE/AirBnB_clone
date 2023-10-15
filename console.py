@@ -25,7 +25,10 @@ class HBNBCommand(cmd.Cmd):
             fobj = self.filter(cLs)
             for p in fobj:
                 uls.append(str(p))
-            print(uls)
+            if segs[1] == custom_cmd[0]:
+                print(uls)
+            elif segs[1] == custom_cmd[1]:
+                print(len(uls))
 
     def filter(self, name):
         """ filter objects """
