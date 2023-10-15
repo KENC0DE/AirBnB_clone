@@ -29,6 +29,15 @@ class HBNBCommand(cmd.Cmd):
                 print(uls)
             elif segs[1] == custom_cmd[1]:
                 print(len(uls))
+        elif segs[0] in storage.load_class():
+            dlm = re.split(r'[.()",]', arg)
+            dlm = [i for i in dlm if i != '']
+            if dlm[1] and hasattr(self, 'do_' + dlm[1]):
+                tmp = (dlm[1])[:]
+                del dlm[1]
+                dlm = " ".join(dlm)
+                line = str(tmp) + " " + dlm
+                self.onecmd(line)
 
     def filter(self, name):
         """ filter objects """
