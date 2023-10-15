@@ -43,7 +43,7 @@ class FileStorage:
             FileStorage.__objects = {key: self.load_class(val['__class__'])
                                      (**val) for key, val in obj_dict.items()}
 
-    def load_class(self, name):
+    def load_class(self, name=None):
         """ Creates class Refrence """
         from models.base_model import BaseModel
         from models.user import User
