@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         elif storage.load_class(arg) is None:
             print("** class doesn't exist **")
         else:
-            new_obj = BaseModel()
+            new_obj = storage.load_class(arg)()
             storage.new(new_obj)
             storage.save()
             print(new_obj.id)

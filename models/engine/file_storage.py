@@ -14,7 +14,7 @@ class FileStorage:
     Storage Class.
     """
 
-    __file_path = "storage_file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -46,8 +46,12 @@ class FileStorage:
     def load_class(self, name):
         """ Creates class Refrence """
         from models.base_model import BaseModel
+        from models.user import User
 
-        classes = {"BaseModel": BaseModel}
+        classes = {
+            "BaseModel": BaseModel,
+            "User": User
+        }
         if name is None:
             return classes
 
