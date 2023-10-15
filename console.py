@@ -17,9 +17,10 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, arg):
         """ Default command """
-        if arg == "User.all()":
-            arg = arg.split('.')
-            cLs = storage.load_class(arg[0])
+        custom_cmd = ["all()", "count()"]
+        segs = arg.split('.')
+        if segs[0] in storage.load_class() and segs[1] in custom_cmd:
+            cLs = storage.load_class(segs[0])
             uls = []
             fobj = self.filter(cLs)
             for p in fobj:
