@@ -15,6 +15,24 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def default(self, arg):
+        """ Default command """
+        if arg == "User.all()":
+            arg = arg.split('.')
+            cLs = storage.load_class(arg[0])
+            uls = []
+            fobj = self.filter(cLs)
+            for p in fobj:
+                uls.append(str(p))
+            print(uls)
+
+    def filter(self, name):
+        """ filter objects """
+        obj_dict = storage.all()
+        obj_ls = list(obj_dict.values())
+        filt = [obj for obj in obj_ls if type(obj) is name]
+        return filt
+
     def do_quit(self, arg):
         """ Quit Program """
         return True
