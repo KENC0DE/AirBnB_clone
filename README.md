@@ -26,7 +26,7 @@ clone of AirBnB Website.
     $
 
 ### create a (User, State, Place, Amenity, Review)
-    `$ create <name>`
+>>> $ create [name]`
 
     (hbnb) create User
     320098c5-ab99-4134-b205-5911dec9c9fa
