@@ -96,4 +96,7 @@ class FileStorage:
             "user_id": str,
             "text": str
         }
+        if name not in attributes:
+            return None
+
         return attributes[name]
