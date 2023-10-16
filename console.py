@@ -139,7 +139,9 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj = storage.all()[key]
                     attar = storage.attrib(arg[2])
-                    setattr(obj, arg[2], attar(arg[3]))
+                    if attar:
+                        arg[3] = attar(arg[3])
+                    setattr(obj, arg[2], arg[3])
                     storage.save()
 
 
